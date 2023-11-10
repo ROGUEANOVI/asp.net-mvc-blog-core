@@ -41,7 +41,7 @@ namespace BlogCore.DataAccess.Repository
                 return await orderBy(query).ToListAsync();
             }
 
-            return query.ToList();
+            return await query.ToListAsync();
         }
 
         public async Task<T?> GetById(int id)
