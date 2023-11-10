@@ -21,9 +21,9 @@ namespace BlogCore.DataAccess.Repository
             _context.Dispose();
         }
 
-        public void save()
+        public async Task Save()
         {
-            _context.SaveChanges();
+           await _context.SaveChangesAsync();
         }
     }
 }

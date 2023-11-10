@@ -15,12 +15,12 @@ namespace BlogCore.DataAccess.Repository
             this.dbSet = context.Set<T>();
         }
 
-        public void Add(T entity)
+        public async Task Add(T entity)
         {
-            dbSet.Add(entity);
+            await dbSet.AddAsync(entity);
         }
 
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
+        public async Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
         {
             IQueryable<T> query = dbSet;
             if (filter != null)
@@ -38,18 +38,18 @@ namespace BlogCore.DataAccess.Repository
 
             if (orderBy != null)
             {
-                return orderBy(query).ToList();
+                return await orderBy(query).ToListAsync();
             }
 
             return query.ToList();
         }
 
-        public T GetById(int id)
+        public async Task<T?> GetById(int id)
         {
-            return dbSet.Find(id);
+            return await dbSet.FindAsync(id);
         }
 
-        public T GetFirstOrDefault(Expression<Func<T, bool>> filter = null, string includeProperties = null)
+        public async Task<T?> GetFirstOrDefault(Expression<Func<T, bool>> filter = null, string includeProperties = null)
         {
             IQueryable<T> query = dbSet;
             if (filter != null)
@@ -65,17 +65,18 @@ namespace BlogCore.DataAccess.Repository
                 }
             }
 
-            return query.FirstOrDefault();
+            return await query.FirstOrDefaultAsync();
         }
 
-        public void Remove(int id)
+        public async Task Remove(int id)
         {
-            T entityToRemove = dbSet.Find(id);
+            T? entityToRemove = await dbSet.FindAsync(id);
         }
 
         public void Remove(T entity)
         {
-            dbSet.Remove(entity);
+             dbSet.Remove(entity);
         }
+
     }
 }
