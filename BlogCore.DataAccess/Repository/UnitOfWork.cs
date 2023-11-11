@@ -8,11 +8,13 @@ namespace BlogCore.DataAccess.Repository
         private readonly ApplicationDbContext _context;
 
         // public IEntityRepository Entity { get; private set; }
-        
+         public ICategoryRepository Category { get; private set; }
+
         public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
             // Entity = new EntityRepository(_context);
+             Category = new CategoryRepository(_context);
         }
 
 

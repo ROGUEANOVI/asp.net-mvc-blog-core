@@ -1,3 +1,5 @@
+using BlogCore.BusinessLogic.Service;
+using BlogCore.BusinessLogic.Service.IService;
 using BlogCore.DataAccess.Repository;
 using BlogCore.DataAccess.Repository.IRepository;
 using BlogCore.Web.Data;
@@ -17,6 +19,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 var app = builder.Build();
 
