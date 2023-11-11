@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "Categorías";
+}
+
+<div class="container my-3">
+    <div class="row">
+        <div class="card border p-0">
+            <div class="card-header bg-dark">
+                <h3 class="card-title text-white text-center"><strong>Lista de Categorías</strong></h3>
+            </div>
+
+            <div class="card-body">
+                <a asp-controller="Category" asp-action="Create" class="card-link btn btn-success text-white mb-4"><i class="bi bi-plus-square"></i>&nbsp; Crear Categoría</a>
+                
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped" style="width:100%" id="tbCategories">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nombre</th>
+                                <th>Orden</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/category.js"></script>
+}
